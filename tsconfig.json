@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "esnext",
+        "jsx": "react",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "baseUrl": "./",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "paths": {
+            "@homework-task/*": ["src/*"]
+        }
+    },
+    "include": ["src/"],
+    "exclude": ["node_modules", "dist"]
+}
