@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { HeroProps } from '@homework-task/interfaces/components.interfaces';
 
 const Hero: React.FC<HeroProps> = ({ title, image }) => {

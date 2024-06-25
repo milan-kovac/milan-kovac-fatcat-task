@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './styles.css';
 
 import PageGenerator from './components/PageGenerator';

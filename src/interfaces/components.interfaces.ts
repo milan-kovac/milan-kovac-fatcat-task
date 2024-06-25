@@ -1,4 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
+
+import { Control, FieldValues } from 'react-hook-form';
 import { z } from 'zod';
 
 export interface TrustBarProps {
@@ -57,14 +59,18 @@ export interface CardLanding {
     link: string;
 }
 
+export interface RenderFormProps {
+    control: Control;
+    errors: FieldValues;
+}
 export interface FormGeneratorProps {
-    validationSchema: z.ZodSchema<any>;
-    renderForm: (props: { control: any; errors: any }) => React.ReactNode;
+    validationSchema: z.ZodSchema<unknown>;
+    renderForm: (props: RenderFormProps) => React.ReactNode;
 }
 
 interface ComponentProps {
     type: string;
-    props: any;
+    props: object;
 }
 
 interface SectionProps {

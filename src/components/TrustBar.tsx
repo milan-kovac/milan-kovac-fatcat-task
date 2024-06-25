@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Marquee from 'react-fast-marquee';
 
 import { TrustBarProps } from '@homework-task/interfaces/components.interfaces';
