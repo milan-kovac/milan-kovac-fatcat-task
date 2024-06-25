@@ -61,3 +61,18 @@ export interface FormGeneratorProps {
     validationSchema: z.ZodSchema<any>;
     renderForm: (props: { control: any; errors: any }) => React.ReactNode;
 }
+
+interface ComponentProps {
+    type: string;
+    props: any;
+}
+
+interface SectionProps {
+    type: string;
+    props: { classes: string[] };
+    components: ComponentProps[];
+}
+
+export interface PageGeneratorProps {
+    data: SectionProps[];
+}
