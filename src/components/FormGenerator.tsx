@@ -5,10 +5,7 @@ import axios from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormGeneratorProps } from '@homework-task/interfaces/components.interfaces';
 
-const FormGenerator: React.FC<FormGeneratorProps> = ({
-    validationSchema,
-    renderForm,
-}) => {
+const FormGenerator: React.FC<FormGeneratorProps> = ({ validationSchema, renderForm }) => {
     const {
         handleSubmit,
         control,
@@ -17,14 +14,10 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({
         resolver: zodResolver(validationSchema),
     });
 
-    const mutation = useMutation(
-        (data) =>
-            axios.post('https://jsonplaceholder.typicode.com/posts', data),
-        {
-            onSuccess: (data) => console.log('Success:', data),
-            onError: (error) => console.log('Error:', error),
-        }
-    );
+    const mutation = useMutation((data) => axios.post('https://jsonplaceholder.typicode.com/posts', data), {
+        onSuccess: (data) => console.log('Success:', data),
+        onError: (error) => console.log('Error:', error),
+    });
 
     const onSubmit: SubmitHandler<any> = (data) => {
         mutation.mutate(data);
@@ -49,16 +42,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({
             >
                 {mutation.isLoading ? 'Submitting...' : 'Submit'}
             </button>
-            {mutation.isError && (
-                <p className="mt-2 text-sm text-[#bb0003]">
-                    Error submitting form.
-                </p>
-            )}
-            {mutation.isSuccess && (
-                <p className="mt-2 text-sm text-[#00bb01]">
-                    Form submitted successfully.
-                </p>
-            )}
+            {mutation.isError && <p className="mt-2 text-sm text-[#bb0003]">Error submitting form.</p>}
+            {mutation.isSuccess && <p className="mt-2 text-sm text-">Form submitted successfully.</p>}
         </form>
     );
 };
