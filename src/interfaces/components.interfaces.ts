@@ -1,4 +1,5 @@
 import { MouseEventHandler, ReactNode } from 'react';
+import { z } from 'zod';
 
 export interface TrustBarProps {
     images: string[];
@@ -54,4 +55,9 @@ export interface CardLanding {
     title: string;
     text: string;
     link: string;
+}
+
+export interface FormGeneratorProps {
+    validationSchema: z.ZodSchema<any>;
+    renderForm: (props: { control: any; errors: any }) => React.ReactNode;
 }
