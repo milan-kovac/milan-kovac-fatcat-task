@@ -1,8 +1,9 @@
+import React from 'react';
 import clsx from 'clsx';
+import Button from './Button';
+import { CardsProps } from '@homework-task/interfaces/components.interfaces';
 
-import { Button } from './Button.jsx';
-
-export const Cards = ({ cards }) => {
+const Cards: React.FC<CardsProps> = ({ cards }) => {
     return (
         <div className={clsx('flex', 'justify-center', 'items-center')}>
             <div className={clsx('grid', 'grid-cols-2', 'gap-8', 'w-8/12')}>
@@ -42,3 +43,5 @@ export const Cards = ({ cards }) => {
         </div>
     );
 };
+
+export default Cards;

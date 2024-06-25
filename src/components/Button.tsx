@@ -1,6 +1,9 @@
+import React from 'react';
 import clsx from 'clsx';
 
-export const Button = ({ children, onClick, className }) => {
+import { ButtonProps } from '@homework-task/interfaces/components.interfaces';
+
+const Button: React.FC<ButtonProps> = ({ children, onClick, className }) => {
     return (
         <button
             className={clsx(
@@ -17,3 +20,5 @@ export const Button = ({ children, onClick, className }) => {
         </button>
     );
 };
+
+export default Button;

@@ -1,6 +1,9 @@
+import React from 'react';
 import clsx from 'clsx';
 
-export const Card = ({ title, text, link }) => (
+import { CardLanding } from '@homework-task/interfaces/components.interfaces';
+
+const Card: React.FC<CardLanding> = ({ title, text, link }) => (
     <div
         className={clsx(
             'flex',
@@ -41,3 +44,5 @@ export const Card = ({ title, text, link }) => (
         </a>
     </div>
 );
+
+export default Card;
