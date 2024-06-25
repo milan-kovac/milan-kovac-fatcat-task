@@ -1,14 +1,18 @@
 import React from 'react';
-import FormGenerator from './FormGenerator';
+
 import { Controller } from 'react-hook-form';
 import { z } from 'zod';
+
+import { RenderFormProps } from '@homework-task/interfaces/components.interfaces';
+
+import FormGenerator from './FormGenerator';
 
 const formSchema = z.object({
     title: z.string().min(1, 'Title is required').max(50, 'Title must be 50 characters or less'),
     body: z.string().min(1, 'Body is required').max(500, 'Body must be 500 characters or less'),
 });
 
-const renderForm = ({ control, errors }: { control: any; errors: any }) => (
+const renderForm = ({ control, errors }: RenderFormProps) => (
     <div className="space-y-4 w-full">
         <div className="flex flex-col">
             <label htmlFor="title" className="mb-2 font-medium text-gray-700">

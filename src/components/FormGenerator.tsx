@@ -1,8 +1,10 @@
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import axios from 'axios';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useForm, UseFormReturn } from 'react-hook-form';
+import { useMutation } from 'react-query';
+
 import { FormGeneratorProps } from '@homework-task/interfaces/components.interfaces';
 
 const FormGenerator: React.FC<FormGeneratorProps> = ({ validationSchema, renderForm }) => {
@@ -10,22 +12,19 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ validationSchema, renderF
         handleSubmit,
         control,
         formState: { errors },
-    } = useForm({
+    }: UseFormReturn = useForm({
         resolver: zodResolver(validationSchema),
     });
 
-    const mutation = useMutation((data) => axios.post('https://jsonplaceholder.typicode.com/posts', data), {
-        onSuccess: (data) => console.log('Success:', data),
-        onError: (error) => console.log('Error:', error),
-    });
+    const mutation = useMutation((data) => axios.post('https://jsonplaceholder.typicode.com/posts', data));
 
-    const onSubmit: SubmitHandler<any> = (data) => {
+    const onSubmit = (data: any) => {
         mutation.mutate(data);
     };
 
     return (
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={() => void handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center bg-[#faf6f3] w-full max-w-lg mx-auto p-6 rounded-lg shadow-md"
         >
             {renderForm({ control, errors })}

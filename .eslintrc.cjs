@@ -5,7 +5,7 @@ const config = {
     root: true,
     env: {
         browser: true,
-        es2020: true
+        es2020: true,
     },
     extends: [
         'eslint:recommended',
@@ -18,30 +18,27 @@ const config = {
         'prettier',
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.js'],
-    settings: {react: {version: '18.2'}},
+    settings: {
+        react: { version: '18.2' },
+        'import/resolver': {
+            typescript: {
+                alwaysTryTypes: true,
+                project: './tsconfig.json',
+            },
+        },
+    },
     parser: '@typescript-eslint/parser',
-    plugins: [
-        'react-refresh',
-        '@typescript-eslint',
-        'react',
-        'import',
-        'react-hooks',
-        'unused-imports',
-        'jsx-a11y',
-        'prettier'
-    ],
+    plugins: ['react-refresh', '@typescript-eslint', 'react', 'import', 'react-hooks', 'unused-imports', 'jsx-a11y', 'prettier'],
     parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         ecmaFeatures: {
-            jsx: true
-        }
+            jsx: true,
+        },
     },
     overrides: [
         {
-            extends: [
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
-            ],
+            extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
             files: ['*.ts', '*.tsx', '*.cjs', '*.mjs'],
             parserOptions: {
                 project: path.join(__dirname, 'tsconfig.json'),
@@ -52,7 +49,7 @@ const config = {
         'react-refresh/only-export-components': [
             'warn',
             {
-                allowConstantExport: true
+                allowConstantExport: true,
             },
         ],
         'prettier/prettier': 'error',
@@ -82,6 +79,6 @@ const config = {
             },
         ],
     },
-}
+};
 
 module.exports = config;
