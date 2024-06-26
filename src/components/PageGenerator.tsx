@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { PageGeneratorProps } from '@homework-task/interfaces/components.interfaces';
 
+type ComponentModule = {
+    default: React.ComponentType<unknown>;
+};
+
 const PageGenerator: React.FC<PageGeneratorProps> = ({ data }) => {
     const [components, setComponents] = useState<Record<string, React.ComponentType<unknown> | undefined>>({});
     useEffect(() => {
@@ -9,8 +13,10 @@ const PageGenerator: React.FC<PageGeneratorProps> = ({ data }) => {
             const componentImports: Record<string, React.ComponentType<unknown> | undefined> = {};
             for (const section of data) {
                 for (const component of section.components) {
-                    const importedComponent = await import(`../components/${component.type}`);
-                    componentImports[component.type] = importedComponent.default;
+                    const module: ComponentModule = (await import(`../components/${component.type}`)) as ComponentModule;
+                    if (module) {
+                        componentImports[component.type] = module.default;
+                    }
                 }
             }
 

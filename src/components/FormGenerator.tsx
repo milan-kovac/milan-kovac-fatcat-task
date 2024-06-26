@@ -2,7 +2,7 @@ import React from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useForm, UseFormReturn } from 'react-hook-form';
+import { FieldValues, useForm, UseFormReturn } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 import { FormGeneratorProps } from '@homework-task/interfaces/components.interfaces';
@@ -16,15 +16,15 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ validationSchema, renderF
         resolver: zodResolver(validationSchema),
     });
 
-    const mutation = useMutation((data) => axios.post('https://jsonplaceholder.typicode.com/posts', data));
+    const mutation = useMutation((data: FieldValues) => axios.post('https://jsonplaceholder.typicode.com/posts', data));
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: FieldValues) => {
         mutation.mutate(data);
     };
 
     return (
         <form
-            onSubmit={() => void handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center bg-[#faf6f3] w-full max-w-lg mx-auto p-6 rounded-lg shadow-md"
         >
             {renderForm({ control, errors })}
